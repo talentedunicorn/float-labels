@@ -5,43 +5,34 @@
 	<title>Sample 1</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<style>
-		/* Make label inside input */
 		.form-group {
 			position: relative;
+			padding-bottom: 1.875em;
+			margin-bottom: 1.875em;
+			/*max-width: 22em;*/
 		}
 
-		.form-group > label {
+		.form-group label {
+			display: block;
 			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			transition: 0.2s;
-		}
-
-		/* On focus do this  NOTE: order should be input FIRST then label */
-		input:focus + label {
-			bottom: 100%;
-			margin-bottom: -16px;
-			padding-top: 0;
-			font-size: 80%;
-		}
-
-
-		/* Pretty stuff */
-		.container {
-			/*max-width: 500px;*/
+			top: 1.25em;
+			font-size: 0.75em;
+			line-height: 1.25em;
+			font-weight: bold;
+			color: #2996cc;
 		}
 
 		.form-control {
+			position: absolute;
+			display: block;
+			box-sizing: border-box;
 			border-radius: 0;
-			padding-top: 18px; /* So text doesn't get hidden when focus kicks in */
 		}
 
-		.form-group > label {
-			padding: 10px 12px;
-			margin: 0;
-			background-color: #ccc;
+		.form-control:valid {
+		  position: relative;
+		  top: 1.875em;
+		  margin-top: -1.875em;
 		}
 	</style>
 </head>
@@ -50,20 +41,20 @@
 		<div class="col-md-12">
 			<h1>Form sample 1</h1>
 			<hr>
-			<form action="" role="form">
+			<form action="" role="form form-horizontal">
 				<div class="form-group">
-					<input type="text" class="form-control" id="name" value="">
 					<label for="name">Name</label>
+					<input type="text" class="form-control" required id="name" placeholder="Name...">
 				</div>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" id="email" value="">
 					<label for="email">Email</label>
+					<input type="text" class="form-control" required id="email" placeholder="Email...">
 				</div>
 				
 				<div class="form-group">
-					<input type="password" class="form-control" id="password" value="">
 					<label for="password">Password</label>
+					<input type="password" class="form-control" required id="password" placeholder="Password..">
 				</div>
 
 				<buttom type="submit" class="btn btn-primary">Send</button>
