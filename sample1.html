@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample 1</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+		/* Make label inside input */
+		.form-group {
+			position: relative;
+		}
+
+		.form-group > label {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			transition: 0.2s;
+		}
+
+		/* On focus do this  NOTE: order should be input FIRST then label */
+		input:focus + label {
+			bottom: 100%;
+			margin-bottom: -16px;
+			padding-top: 0;
+			font-size: 80%;
+		}
+
+
+		/* Pretty stuff */
+		.container {
+			/*max-width: 500px;*/
+		}
+
+		.form-control {
+			border-radius: 0;
+			padding-top: 18px; /* So text doesn't get hidden when focus kicks in */
+		}
+
+		.form-group > label {
+			padding: 10px 12px;
+			margin: 0;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<h1>Form sample 1</h1>
+			<hr>
+			<form action="" role="form">
+				<div class="form-group">
+					<input type="text" class="form-control" id="name" value="">
+					<label for="name">Name</label>
+				</div>
+				
+				<div class="form-group">
+					<input type="text" class="form-control" id="email" value="">
+					<label for="email">Email</label>
+				</div>
+				
+				<div class="form-group">
+					<input type="password" class="form-control" id="password" value="">
+					<label for="password">Password</label>
+				</div>
+
+				<buttom type="submit" class="btn btn-primary">Send</button>
+			</form>
+			
+		</div>
+
+	</div>
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>
