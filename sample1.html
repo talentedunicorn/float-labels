@@ -34,6 +34,10 @@
 		  top: 1.875em;
 		  margin-top: -1.875em;
 		}
+
+		label.ie-valid {
+			top: -1.25em; 
+		}
 	</style>
 </head>
 <body>
@@ -41,10 +45,7 @@
 		<div class="col-md-12">
 			<h1>Form sample 1</h1>
 			<hr>
-			<p class="text-muted">
-				**This form uses <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#Browser_compatibility">HTML5 placeholders</a> and might not work on IE versions below 10.
-			</p>
-			<form action="" role="form form-horizontal">
+			<form name="sample1" role="form">
 				<div class="form-group">
 					<label for="name">Name</label>
 					<input type="text" class="form-control" required id="name" placeholder="Name...">
@@ -60,15 +61,51 @@
 					<input type="password" class="form-control" required id="password" placeholder="Password..">
 				</div>
 
-				<buttom type="submit" class="btn btn-primary">Send</button>
+				<button type="submit" class="btn btn-primary">Send</button>
 			</form>
 			
 		</div>
-
 	</div>
 
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
+
+	<script>
+		$(function(){
+			// Work-around for form placeholders
+			if(!elementSupportsAttribute('input', 'placeholder')) {
+				console.log('placeholder not supported');
+
+				// Get form inputs
+				var formInputs = $("input[type='text'], input[type='password']"); 
+
+				// Toggle 'placeholder class' when text is added
+				formInputs.each(function(){
+					$(this).keyup(function() {
+						// Check if field is empty
+						if( $(this).val() ) {
+							$(this).siblings('label').addClass('ie-valid');
+						} else {
+							$(this).siblings('label').removeClass('ie-valid');
+						}
+
+						// console.log($(this).val());
+					});
+				}); 
+			}
+		});
+
+		/* 
+			Function: elementSupportsAttribute,
+			Attributes: element, attribute
+
+			Checks if an attribute is supported for the element 
+		*/
+		function elementSupportsAttribute(element, attribute) {
+			var test = document.createElement(element);
+			return attribute in test;
+		}
+	</script>
 </body>
 </html>
