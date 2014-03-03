@@ -45,8 +45,8 @@
 		<div class="col-md-12">
 			<h1>Form sample 1</h1>
 			<hr>
-			<p class="well text-danger">
-				This form does not fully support IE versions below 10, for a full experience please upgrade your browser!
+			<p class="well text-danger ie-below-10-warn hidden">
+				This form does not fully support your browser, for a full experience please upgrade your browser or get a different browser <a href="https://www.google.com/intl/en/chrome/browser/">here</a>
 			</p>
 			<form name="sample1" role="form">
 				<div class="form-group">
@@ -81,6 +81,7 @@
 			// Work-around for form placeholders
 			if(!elementSupportsAttribute('input', 'placeholder')) {
 				console.log('placeholder not supported');
+				$('.ie-below-10-warn').toggleClass('hidden');
 
 				// Get form inputs
 				var formInputs = $("input[type='text'], input[type='password']"); 
