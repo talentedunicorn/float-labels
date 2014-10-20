@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sample 1</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+		.form-group {
+			position: relative;
+			padding-bottom: 1.875em;
+			margin-bottom: 1.875em;
+		}
+
+		.form-group label {
+			display: block;
+			position: absolute;
+			top: 1.25em;
+			font-size: 0.75em;
+			line-height: 1.25em;
+			font-weight: bold;
+			color: #2996cc;
+		}
+
+		.form-control {
+			position: absolute;
+			display: block;
+			box-sizing: border-box;
+			border-radius: 0;
+		}
+
+		.form-control:valid {
+		  position: relative;
+		  top: 1.875em;
+		  margin-top: -1.875em;
+		}
+
+		label.ie-valid {
+			top: -1.25em; 
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<h1>Form sample 1</h1>
+			<hr>
+			<p class="well text-danger ie-below-10-warn hidden">
+				This form does not fully support your browser, for a full experience please upgrade your browser or get a different browser <a href="https://www.google.com/intl/en/chrome/browser/">here</a>
+			</p>
+			<form name="sample1" role="form">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" required id="name" placeholder="Name...">
+				</div>
+				
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" required id="email" placeholder="Email...">
+				</div>
+				
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" required id="password" placeholder="Password..">
+				</div>
+
+				<button type="submit" class="btn btn-primary">Send</button>
+			</form>
+			
+		</div>
+	</div>
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- // <script src="js/placeholders.min.js"></script> -->
+	<script src="js/placeholders.jquery.min.js"></script>
+
+	<script>
+		$(function(){
+			// Work-around for form placeholders
+			if(!elementSupportsAttribute('input', 'placeholder')) {
+				console.log('placeholder not supported');
+				$('.ie-below-10-warn').toggleClass('hidden');
+
+				// Get form inputs
+				var formInputs = $("input[type='text'], input[type='password']"); 
+
+				// Toggle 'placeholder class' when text is added
+				formInputs.each(function(){
+					$(this).keyup(function() {
+						// Check if field is empty
+						if( $(this).val() ) {
+							$(this).siblings('label').addClass('ie-valid');
+						} else {
+							$(this).siblings('label').removeClass('ie-valid');
+						}
+
+						// console.log($(this).val());
+					});
+				}); 
+
+				// Set fake placeholders
+
+			}
+		});
+
+		/* 
+			Function: elementSupportsAttribute,
+			Attributes: element, attribute
+
+			Checks if an attribute is supported for the element 
+		*/
+		function elementSupportsAttribute(element, attribute) {
+			var test = document.createElement(element);
+			return attribute in test;
+		}
+	</script>
+</body>
+</html>
